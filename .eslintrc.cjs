@@ -12,24 +12,33 @@ module.exports = {
     },
   },
   plugins: ['react', 'react-hooks', 'jsx-a11y', 'import', 'prettier'],
-  extends: [
-    'airbnb',
-    'plugin:prettier/recommended'
-  ],
+  extends: ['airbnb', 'plugin:prettier/recommended'],
   settings: {
     react: {
       version: 'detect',
     },
     'import/resolver': {
       node: {
-        extensions: ['.js', '.jsx', '.json']
-      }
-    }
+        extensions: ['.js', '.jsx', '.json'],
+      },
+    },
   },
   rules: {
     'react/react-in-jsx-scope': 'off',
     'prettier/prettier': 'warn',
     'no-console': ['warn', { allow: ['warn', 'error'] }],
-    'import/order': ['warn', { 'newlines-between': 'always' }]
-  }
+    'import/order': ['warn', { 'newlines-between': 'always' }],
+    'import/no-extraneous-dependencies': [
+      'error',
+      {
+        devDependencies: [
+          'vite.config.js',
+          'vitest.config.js',
+          'src/test/**',
+          '**/*.test.jsx',
+          '**/*.test.js',
+        ],
+      },
+    ],
+  },
 };
