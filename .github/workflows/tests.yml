@@ -23,33 +23,4 @@ jobs:
         run: 
           npm install
           npm run test
-
-      - name: Check test results
-        uses: actions/github-script@v6
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          script: |
-            const checkRunId = ${{ steps.test.outputs.check_run_id }}
-            const checkRunResult = ${{ github.event.pull_request.status }}
-            const checkRunOutput = ${{ steps.test.outputs.check_output }}
-
-            console.log('checkRunId:', checkRunId)
-            console.log('checkRunResult:', checkRunResult)
-            console.log('checkRunOutput:', checkRunOutput)
-
-            const octokit = github.getOctokit();
-            const checkRunData = {
-              name: 'Tests',
-              output: {
-                summary: checkRunOutput,
-                text: checkRunOutput,
-              },
-              status: checkRunResult,
-            };
-
-            await octokit.checks.update({
-              check_run_id: checkRunId,
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              input: checkRunData,
-            });
+          
