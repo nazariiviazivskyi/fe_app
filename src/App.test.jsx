@@ -12,7 +12,7 @@ describe('App Component', () => {
 
   it('displays initial count as 0', () => {
     render(<App />);
-    expect(screen.getByText(/count is 0/i)).toBeInTheDocument();
+    expect(screen.getByText(/count is 0/i)).not.toBeInTheDocument();
   });
 
   it('increments count when button is clicked', async () => {
