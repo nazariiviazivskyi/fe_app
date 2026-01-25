@@ -20,7 +20,9 @@ jobs:
 
       - name: Run tests
         id: test
-        run: npm run test
+        run: 
+          npm installs
+          npm run test
 
       - name: Check test results
         uses: actions/github-script@v6
