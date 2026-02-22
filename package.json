@@ -18,7 +18,9 @@
     "check": "npm run lint && npx prettier --check \"src/**/*.{js,jsx,css,md,json}\""
   },
   "dependencies": {
+    "@nextui-org/react": "^2.6.11",
     "@vitejs/plugin-react": "4.2.1",
+    "framer-motion": "^12.34.3",
     "react": "19.2.3",
     "react-dom": "19.2.3",
     "vite": "5.0.8"
