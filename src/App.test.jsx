@@ -7,39 +7,85 @@ import App from './App';
 describe('App Component', () => {
   it('renders the app with correct heading', () => {
     render(<App />);
-    expect(screen.getByText('React App')).toBeInTheDocument();
+    expect(screen.getByText('React + Material UI + Vite')).toBeInTheDocument();
   });
 
   it('displays initial count as 0', () => {
     render(<App />);
-    expect(screen.getByText(/count is 0/i)).toBeInTheDocument();
+    expect(screen.getByText('0')).toBeInTheDocument();
   });
 
-  it('increments count when button is clicked', async () => {
+  it('renders increment button', () => {
+    render(<App />);
+    expect(screen.getByText('Increment')).toBeInTheDocument();
+  });
+
+  it('renders decrement button', () => {
+    render(<App />);
+    expect(screen.getByText('Decrement')).toBeInTheDocument();
+  });
+
+  it('renders reset button', () => {
+    render(<App />);
+    expect(screen.getByText('Reset')).toBeInTheDocument();
+  });
+
+  it('increments count when increment button is clicked', async () => {
     const user = userEvent.setup();
     render(<App />);
 
-    const button = screen.getByText(/count is/i);
-    await user.click(button);
+    const incrementButton = screen.getByText('Increment');
+    await user.click(incrementButton);
 
-    expect(screen.getByText(/count is 1/i)).toBeInTheDocument();
+    expect(screen.getByText('1')).toBeInTheDocument();
   });
 
-  it('increments count multiple times', async () => {
+  it('decrements count when decrement button is clicked', async () => {
     const user = userEvent.setup();
     render(<App />);
 
-    const button = screen.getByText(/count is/i);
-    await user.click(button);
-    await user.click(button);
-    await user.click(button);
+    const incrementButton = screen.getByText('Increment');
+    const decrementButton = screen.getByText('Decrement');
 
-    expect(screen.getByText(/count is 3/i)).toBeInTheDocument();
+    // First increment to 1
+    await user.click(incrementButton);
+    expect(screen.getByText('1')).toBeInTheDocument();
+
+    // Then decrement to 0
+    await user.click(decrementButton);
+    expect(screen.getByText('0')).toBeInTheDocument();
   });
 
-  it('renders the HMR message', () => {
+  it('resets count to 0 when reset button is clicked', async () => {
+    const user = userEvent.setup();
     render(<App />);
-    expect(screen.getByText('src/App.jsx')).toBeInTheDocument();
-    expect(screen.getByText(/and save to test HMR/i)).toBeInTheDocument();
+
+    const incrementButton = screen.getByText('Increment');
+    const resetButton = screen.getByText('Reset');
+
+    // First increment multiple times
+    await user.click(incrementButton);
+    await user.click(incrementButton);
+    expect(screen.getByText('2')).toBeInTheDocument();
+
+    // Then reset
+    await user.click(resetButton);
+    expect(screen.getByText('0')).toBeInTheDocument();
+  });
+
+  it('renders the Getting Started card', () => {
+    render(<App />);
+    expect(screen.getByText('Getting Started')).toBeInTheDocument();
+  });
+
+  it('renders the Counter Example card', () => {
+    render(<App />);
+    expect(screen.getByText('Counter Example')).toBeInTheDocument();
+  });
+
+  it('renders links to Material-UI and Vite', () => {
+    render(<App />);
+    expect(screen.getByText('Material-UI')).toBeInTheDocument();
+    expect(screen.getByText('Vite')).toBeInTheDocument();
   });
 });
