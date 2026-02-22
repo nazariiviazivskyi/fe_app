@@ -1,65 +1,135 @@
 import { useState } from 'react';
-import { Button, Card, CardBody, CardHeader, Divider, Link } from '@nextui-org/react';
+import {
+  Container,
+  Box,
+  Card,
+  CardContent,
+  CardHeader,
+  Button,
+  Typography,
+  Link,
+  Stack,
+  Divider,
+} from '@mui/material';
+import AddIcon from '@mui/icons-material/Add';
+import RemoveIcon from '@mui/icons-material/Remove';
+import RestartAltIcon from '@mui/icons-material/RestartAlt';
 
 function App() {
   const [count, setCount] = useState(0);
 
   return (
-    <div className="w-full min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 p-8">
-      <div className="max-w-2xl mx-auto">
-        <h1 className="text-4xl font-bold text-center mb-4 text-gray-800">React + NextUI + Vite</h1>
-        <p className="text-center text-gray-600 mb-8">Modern UI components with beautiful design</p>
+    <Box
+      sx={{
+        minHeight: '100vh',
+        background: 'linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%)',
+        py: 4,
+      }}
+    >
+      <Container maxWidth="md">
+        <Box
+          sx={{
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'center',
+            minHeight: '100vh',
+          }}
+        >
+          {/* Header */}
+          <Box sx={{ mb: 6, textAlign: 'center' }}>
+            <Typography
+              variant="h2"
+              component="h1"
+              sx={{ fontWeight: 'bold', mb: 2, color: 'white' }}
+            >
+              React + Material UI + Vite
+            </Typography>
+            <Typography variant="h6" sx={{ color: 'rgba(255,255,255,0.9)' }}>
+              Beautiful, responsive, and modern web applications
+            </Typography>
+          </Box>
 
-        <Card className="mb-6">
-          <CardHeader className="flex gap-3">
-            <div className="flex flex-col">
-              <p className="text-lg font-semibold">Counter Example</p>
-              <p className="text-sm text-default-500">NextUI Button Component</p>
-            </div>
-          </CardHeader>
-          <Divider />
-          <CardBody className="gap-4">
-            <div className="text-center">
-              <p className="text-6xl font-bold text-indigo-600 mb-6">{count}</p>
-              <div className="flex gap-3 justify-center flex-wrap">
-                <Button color="primary" onClick={() => setCount((c) => c + 1)} size="lg">
-                  Increment
-                </Button>
-                <Button color="secondary" onClick={() => setCount((c) => c - 1)} size="lg">
-                  Decrement
-                </Button>
-                <Button color="warning" variant="flat" onClick={() => setCount(0)} size="lg">
-                  Reset
-                </Button>
-              </div>
-            </div>
-          </CardBody>
-        </Card>
+          {/* Counter Card */}
+          <Card sx={{ mb: 4, boxShadow: 3 }}>
+            <CardHeader
+              title="Counter Example"
+              subheaderTypographyProps={{ variant: 'body2' }}
+              subheader="Interactive counter with Material-UI"
+            />
+            <Divider />
+            <CardContent>
+              <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 3 }}>
+                <Typography variant="h1" sx={{ fontWeight: 'bold', color: 'primary.main' }}>
+                  {count}
+                </Typography>
+                <Stack
+                  direction="row"
+                  spacing={2}
+                  sx={{ flexWrap: 'wrap', justifyContent: 'center' }}
+                >
+                  <Button
+                    variant="contained"
+                    color="primary"
+                    size="large"
+                    startIcon={<AddIcon />}
+                    onClick={() => setCount((c) => c + 1)}
+                  >
+                    Increment
+                  </Button>
+                  <Button
+                    variant="contained"
+                    color="error"
+                    size="large"
+                    startIcon={<RemoveIcon />}
+                    onClick={() => setCount((c) => c - 1)}
+                  >
+                    Decrement
+                  </Button>
+                  <Button
+                    variant="outlined"
+                    color="warning"
+                    size="large"
+                    startIcon={<RestartAltIcon />}
+                    onClick={() => setCount(0)}
+                  >
+                    Reset
+                  </Button>
+                </Stack>
+              </Box>
+            </CardContent>
+          </Card>
 
-        <Card>
-          <CardHeader className="flex gap-3">
-            <p className="text-lg font-semibold">Getting Started</p>
-          </CardHeader>
-          <Divider />
-          <CardBody className="gap-3">
-            <p>
-              Edit <code className="bg-gray-200 px-2 py-1 rounded">src/App.jsx</code> and save to
-              test HMR
-            </p>
-            <p>
-              Learn more about{' '}
-              <Link href="https://nextui.org" target="_blank" rel="noopener noreferrer">
-                NextUI
-              </Link>{' '}
-              and{' '}
-              <Link href="https://vitejs.dev" target="_blank" rel="noopener noreferrer">
-                Vite
-              </Link>
-            </p>
-          </CardBody>
-        </Card>
-      </div>
-    </div>
+          {/* Info Card */}
+          <Card sx={{ boxShadow: 3 }}>
+            <CardHeader title="Getting Started" />
+            <Divider />
+            <CardContent>
+              <Stack spacing={2}>
+                <Typography>
+                  Edit{' '}
+                  <code
+                    style={{ backgroundColor: '#f5f5f5', padding: '4px 8px', borderRadius: '4px' }}
+                  >
+                    src/App.jsx
+                  </code>{' '}
+                  and save to test HMR
+                </Typography>
+                <Typography>
+                  Learn more about{' '}
+                  <Link href="https://mui.com" target="_blank" rel="noopener noreferrer">
+                    Material-UI
+                  </Link>{' '}
+                  and{' '}
+                  <Link href="https://vitejs.dev" target="_blank" rel="noopener noreferrer">
+                    Vite
+                  </Link>
+                </Typography>
+              </Stack>
+            </CardContent>
+          </Card>
+        </Box>
+      </Container>
+    </Box>
   );
 }
 
