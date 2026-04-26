@@ -33,7 +33,6 @@ npm run preview
 ```
 
 ## Project Structure
-
 ```
 app/
 ├── src/
