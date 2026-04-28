@@ -110,7 +110,7 @@ function App() {
                   <code
                     style={{ backgroundColor: '#f5f5f5', padding: '4px 8px', borderRadius: '4px' }}
                   >
-                    src/App.jsx
+                    src/App.tsx
                   </code>{' '}
                   and save to test HMR
                 </Typography>

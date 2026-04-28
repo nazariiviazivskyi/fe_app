@@ -37,10 +37,10 @@ npm run preview
 ```
 app/
 ├── src/
-│   ├── App.jsx       # Main App component
-│   ├── main.jsx      # React entry point
+│   ├── App.tsx       # Main App component
+│   ├── main.tsx      # React entry point
 │   └── index.css     # Global styles
 ├── index.html        # HTML template
-├── vite.config.js    # Vite configuration
+├── vite.config.ts    # Vite configuration
 └── package.json      # Dependencies and scripts
 ```
