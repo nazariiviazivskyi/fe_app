@@ -43,7 +43,7 @@ module.exports = {
         js: 'never',
         jsx: 'never',
         ts: 'never',
-        tsx: 'never',
+        tsx: 'always',
       },
     ],
     'import/order': ['warn', { 'newlines-between': 'always' }],
